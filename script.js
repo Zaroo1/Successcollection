@@ -473,7 +473,7 @@ function processPaystackPayment(name, email, phone, address) {
 
 function sendOrderViaWhatsApp(name, email, phone, address) {
     const orderSummary = generateOrderSummary(name, email, phone, address);
-    const whatsappNumber = '233XXXXXXXXX'; // Replace with your WhatsApp number
+    const whatsappNumber = '233598160732'; // Replace with your WhatsApp number
     const whatsappUrl = `https://wa.me/${whatsappNumber}?text=${encodeURIComponent(orderSummary)}`;
     window.open(whatsappUrl, '_blank');
     
@@ -540,7 +540,7 @@ async function saveOrderToGoogleSheets(name, email, phone, address, paymentStatu
     };
     
     // Google Sheets Web App URL - You'll need to set this up
-    const GOOGLE_SHEETS_WEBAPP_URL = 'YOUR_GOOGLE_APPS_SCRIPT_WEBAPP_URL';
+    const GOOGLE_SHEETS_WEBAPP_URL = 'https://script.google.com/macros/s/AKfycbxzUDH5TNDuM5VzbOvm6tzU0t7GY1i3K4NrkpPCgF0jIpzaUSi0lZ9QdLi2DNCi_He8jQ/exec';
     
     try {
         const response = await fetch(GOOGLE_SHEETS_WEBAPP_URL, {
