@@ -304,7 +304,7 @@ function generateReceiptHTML(orderData) {
 
 async function storeOrderToGoogleSheets(orderData) {
     // At the top of your script.js (around line 182 in your current file)
-const GOOGLE_SHEET_WEBHOOK = "https://script.google.com/macros/s/AKfycbykGZwSwOZ-OEfEsX56LpD4LBKwjFbSoEkdsFyM-5WnwIIvhEFq_om-O80ZccjwYtnk/exec";
+const GOOGLE_SHEET_WEBHOOK = "https://script.google.com/macros/s/AKfycbxwmKTkRHNlUTgf8Nfg9EJNnBisMbPzj0pcUYHomJIc5KEAl-iVS7u4yBdYHuRd1buI/exec";
     
     if (!GOOGLE_SHEET_WEBHOOK) {
         console.log("Order saved locally:", orderData);
