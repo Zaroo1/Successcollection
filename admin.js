@@ -5,7 +5,7 @@
 
 // ========== AUTHENTICATION ==========
 const ADMIN_PASSWORD_KEY = 'admin_password_hash';
-const DEFAULT_PASSWORD = 'admin123';
+const DEFAULT_PASSWORD = 'LordLamba123456';
 
 function hashPassword(pwd) {
     let hash = 0;
@@ -72,7 +72,7 @@ function saveProducts() {
 
 // ========== IMPROVED LOAD ORDERS FROM GOOGLE SHEETS ==========
 async function loadOrders() {
-    const webhookUrl = localStorage.getItem('google_sheets_webhook') || 'https://script.google.com/macros/s/AKfycbykGZwSwOZ-OEfEsX56LpD4LBKwjFbSoEkdsFyM-5WnwIIvhEFq_om-O80ZccjwYtnk/exec';
+    const webhookUrl = localStorage.getItem('google_sheets_webhook') || '';
     
     // If no webhook URL, use demo data or localStorage
     if (!webhookUrl) {
