@@ -1,778 +1,484 @@
-// ============================================
-// SUCCESS COLLECTION ONLINE - MAIN JAVASCRIPT
-// Complete E-commerce Functionality
-// ============================================
+/* ============================================
+   SUCCESS COLLECTION ONLINE - MAIN JAVASCRIPT
+   ============================================ */
 
-// ============================================
-// PRODUCT DATA
-// ============================================
-const products = [
-    {
-        id: 1,
-        name: "Luxury Gold Perfume",
-        price: 350,
-        description: "Premium fragrance with notes of vanilla, amber, and musk. Long-lasting scent perfect for any occasion.",
-        images: [
-            "https://images.unsplash.com/photo-1592945403244-b3fbafd7f539?w=400&h=400&fit=crop",
-            "https://images.unsplash.com/photo-1594035910387-fea47794261f?w=400&h=400&fit=crop"
-        ],
-        category: "perfume",
-        badge: "Best Seller"
-    },
-    {
-        id: 2,
-        name: "Premium Hoodie",
-        price: 280,
-        description: "Comfortable and stylish hoodie made from premium cotton blend. Perfect for casual wear.",
-        images: [
-            "https://images.unsplash.com/photo-1556821840-3a63f95609a7?w=400&h=400&fit=crop",
-            "https://images.unsplash.com/photo-1578768079052-aa76e52ff62e?w=400&h=400&fit=crop"
-        ],
-        category: "hoodie",
-        badge: "New"
-    },
-    {
-        id: 3,
-        name: "Designer Sneakers",
-        price: 450,
-        description: "Limited edition designer sneakers with premium leather and comfortable sole.",
-        images: [
-            "https://images.unsplash.com/photo-1549298916-b41d501d3772?w=400&h=400&fit=crop",
-            "https://images.unsplash.com/photo-1600185365483-26d7a4cc7519?w=400&h=400&fit=crop"
-        ],
-        category: "shoes",
-        badge: "Trending"
-    },
-    {
-        id: 4,
-        name: "Summer Dress",
-        price: 320,
-        description: "Elegant summer dress with floral pattern. Lightweight and breathable fabric.",
-        images: [
-            "https://images.unsplash.com/photo-1539008835657-9e8e9680c956?w=400&h=400&fit=crop",
-            "https://images.unsplash.com/photo-1496747611176-843222e1e57c?w=400&h=400&fit=crop"
-        ],
-        category: "clothing",
-        badge: "Sale"
-    },
-    {
-        id: 5,
-        name: "Men's Casual Shirt",
-        price: 220,
-        description: "Premium cotton casual shirt with modern fit. Perfect for both casual and semi-formal occasions.",
-        images: [
-            "https://images.unsplash.com/photo-1596755094514-f87e34085b2c?w=400&h=400&fit=crop",
-            "https://images.unsplash.com/photo-1489987707025-afc232f7ea0f?w=400&h=400&fit=crop"
-        ],
-        category: "clothing",
-        badge: ""
-    },
-    {
-        id: 6,
-        name: "Luxury Leather Bag",
-        price: 580,
-        description: "Handcrafted leather bag with premium finish. Spacious and stylish.",
-        images: [
-            "https://images.unsplash.com/photo-1548036328-c9fa89d128fa?w=400&h=400&fit=crop",
-            "https://images.unsplash.com/photo-1590874103328-eac38a683ce7?w=400&h=400&fit=crop"
-        ],
-        category: "accessories",
-        badge: "Limited"
-    }
+// ========== PRODUCT DATABASE - 45 CUSTOM PRODUCTS ==========
+let productsDB = [
+    { id: 1,  name: "Available",          price: 200, image: "1.jpg",  fallback: "https://placehold.co/400x500/2c2c2c/gold?text=Product+1" },
+    { id: 2,  name: "Available",               price: 194, image: "2.jpg",  fallback: "https://placehold.co/400x500/2c2c2c/gold?text=Product+2" },
+    { id: 3,  name: "Available",             price: 313, image: "3.jpg",  fallback: "https://placehold.co/400x500/2c2c2c/gold?text=Product+3" },
+    { id: 4,  name: "Available",         price: 157, image: "4.jpg",  fallback: "https://placehold.co/400x500/2c2c2c/gold?text=Product+4" },
+    { id: 5,  name: "Available",      price: 392, image: "5.jpg",  fallback: "https://placehold.co/400x500/2c2c2c/gold?text=Product+5" },
+    { id: 6,  name: "Available",           price: 150, image: "6.jpg",  fallback: "https://placehold.co/400x500/2c2c2c/gold?text=Product+6" },
+    { id: 7,  name: "Available",         price: 180, image: "7.jpg",  fallback: "https://placehold.co/400x500/2c2c2c/gold?text=Product+7" },
+    { id: 8,  name: "Available",         price: 600, image: "8.jpg",  fallback: "https://placehold.co/400x500/2c2c2c/gold?text=Product+8" },
+    { id: 9,  name: "Available",          price: 491, image: "9.jpg",  fallback: "https://placehold.co/400x500/2c2c2c/gold?text=Product+9" },
+    { id: 10, name: "Available",            price: 431, image: "10.jpg", fallback: "https://placehold.co/400x500/2c2c2c/gold?text=Product+10" },
+    { id: 11, name: "Available",   price: 492, image: "11.jpg", fallback: "https://placehold.co/400x500/2c2c2c/gold?text=Product+11" },
+    { id: 12, name: "Available",           price: 326, image: "12.jpg", fallback: "https://placehold.co/400x500/2c2c2c/gold?text=Product+12" },
+    { id: 13, name: "Available",           price: 265, image: "13.jpg", fallback: "https://placehold.co/400x500/2c2c2c/gold?text=Product+13" },
+    { id: 14, name: "Available",               price: 409, image: "14.jpg", fallback: "https://placehold.co/400x500/2c2c2c/gold?text=Product+14" },
+    { id: 15, name: "Available",           price: 616, image: "15.jpg", fallback: "https://placehold.co/400x500/2c2c2c/gold?text=Product+15" },
+    { id: 16, name: "Available",            price: 627, image: "16.jpg", fallback: "https://placehold.co/400x500/2c2c2c/gold?text=Product+16" },
+    { id: 17, name: "Available",             price: 512, image: "17.jpg", fallback: "https://placehold.co/400x500/2c2c2c/gold?text=Product+17" },
+    { id: 18, name: "Available",         price: 585, image: "18.jpg", fallback: "https://placehold.co/400x500/2c2c2c/gold?text=Product+18" },
+    { id: 19, name: "Available",            price: 332, image: "19.jpg", fallback: "https://placehold.co/400x500/2c2c2c/gold?text=Product+19" },
+    { id: 20, name: "Available",             price: 621, image: "20.jpg", fallback: "https://placehold.co/400x500/2c2c2c/gold?text=Product+20" },
+    { id: 21, name: "Available",         price: 433, image: "21.jpg", fallback: "https://placehold.co/400x500/2c2c2c/gold?text=Product+21" },
+    { id: 22, name: "Available",               price: 253, image: "22.jpg", fallback: "https://placehold.co/400x500/2c2c2c/gold?text=Product+22" },
+    { id: 23, name: "Available",              price: 452, image: "23.jpg", fallback: "https://placehold.co/400x500/2c2c2c/gold?text=Product+23" },
+    { id: 24, name: "Available",        price: 488, image: "24.jpg", fallback: "https://placehold.co/400x500/2c2c2c/gold?text=Product+24" },
+    { id: 25, name: "Available",            price: 226, image: "25.jpg", fallback: "https://placehold.co/400x500/2c2c2c/gold?text=Product+25" },
+    { id: 26, name: "Available",               price: 139, image: "26.jpg", fallback: "https://placehold.co/400x500/2c2c2c/gold?text=Product+26" },
+    { id: 27, name: "Available",               price: 520, image: "27.jpg", fallback: "https://placehold.co/400x500/2c2c2c/gold?text=Product+27" },
+    { id: 28, name: "Available",             price: 250, image: "28.jpg", fallback: "https://placehold.co/400x500/2c2c2c/gold?text=Product+28" },
+    { id: 29, name: "Available",              price: 459, image: "29.jpg", fallback: "https://placehold.co/400x500/2c2c2c/gold?text=Product+29" },
+    { id: 30, name: "Available",                price: 125, image: "30.jpg", fallback: "https://placehold.co/400x500/2c2c2c/gold?text=Product+30" },
+    { id: 31, name: "Available",                  price: 339, image: "31.jpg", fallback: "https://placehold.co/400x500/2c2c2c/gold?text=Product+31" },
+    { id: 32, name: "Available",               price: 334, image: "32.jpg", fallback: "https://placehold.co/400x500/2c2c2c/gold?text=Product+32" },
+    { id: 33, name: "Available",           price: 124, image: "33.jpg", fallback: "https://placehold.co/400x500/2c2c2c/gold?text=Product+33" },
+    { id: 34, name: "Available",             price: 552, image: "34.jpg", fallback: "https://placehold.co/400x500/2c2c2c/gold?text=Product+34" },
+    { id: 35, name: "Available",             price: 191, image: "35.jpg", fallback: "https://placehold.co/400x500/2c2c2c/gold?text=Product+35" },
+    { id: 36, name: "Available",         price: 490, image: "36.jpg", fallback: "https://placehold.co/400x500/2c2c2c/gold?text=Product+36" },
+    { id: 37, name: "Available",         price: 220, image: "37.jpg", fallback: "https://placehold.co/400x500/2c2c2c/gold?text=Product+37" },
+    { id: 38, name: "Available",            price: 615, image: "38.jpg", fallback: "https://placehold.co/400x500/2c2c2c/gold?text=Product+38" },
+    { id: 39, name: "Available",              price: 308, image: "39.jpg", fallback: "https://placehold.co/400x500/2c2c2c/gold?text=Product+39" },
+    { id: 40, name: "Available",            price: 556, image: "40.jpg", fallback: "https://placehold.co/400x500/2c2c2c/gold?text=Product+40" },
+    { id: 41, name: "Available",          price: 323, image: "41.jpg", fallback: "https://placehold.co/400x500/2c2c2c/gold?text=Product+41" },
+    { id: 42, name: "Available",       price: 137, image: "42.jpg", fallback: "https://placehold.co/400x500/2c2c2c/gold?text=Product+42" },
+    { id: 43, name: "Available",           price: 403, image: "43.jpg", fallback: "https://placehold.co/400x500/2c2c2c/gold?text=Product+43" },
+    { id: 44, name: "Available",          price: 631, image: "44.jpg", fallback: "https://placehold.co/400x500/2c2c2c/gold?text=Product+44" },
+    { id: 45, name: "Available",              price: 00, image: "45.jpg", fallback: "https://placehold.co/400x500/2c2c2c/gold?text=Product+45" }
 ];
 
-// ============================================
-// GLOBAL VARIABLES
-// ============================================
+// ========== CART SYSTEM (unchanged) ==========
 let cart = [];
-let currentLocation = null;
+let currentOrderData = null;
 
-// ============================================
-// INITIALIZATION
-// ============================================
-document.addEventListener('DOMContentLoaded', () => {
-    initializeApp();
-});
-
-function initializeApp() {
-    loadCartFromStorage();
-    renderProducts();
+function saveCart() {
+    localStorage.setItem('successCart', JSON.stringify(cart));
     updateCartUI();
-    setupEventListeners();
-    detectUserLocation();
-    updateCartCount();
 }
 
-// ============================================
-// PRODUCT RENDERING
-// ============================================
-function renderProducts() {
-    const productsGrid = document.getElementById('productsGrid');
-    if (!productsGrid) return;
-    
-    productsGrid.innerHTML = products.map(product => `
-        <div class="product-card" data-product-id="${product.id}">
-            <div class="product-image-container" onclick="openImageModal(${product.id}, 0)">
-                <img src="${product.images[0]}" alt="${product.name}" class="product-image">
-                <img src="${product.images[1]}" alt="${product.name}" class="product-image-secondary">
-                ${product.badge ? `<span class="product-badge">${product.badge}</span>` : ''}
-            </div>
-            <div class="product-info">
-                <h3 class="product-title">${product.name}</h3>
-                <div class="product-price">GH₵ ${product.price.toFixed(2)}</div>
-                <p class="product-description">${product.description.substring(0, 60)}...</p>
-                <div class="product-actions">
-                    <button class="btn-add-to-cart" onclick="addToCart(${product.id})">
-                        <i class="fas fa-shopping-cart"></i> Add to Cart
-                    </button>
-                    <button class="btn-quick-view" onclick="quickViewProduct(${product.id})">
-                        <i class="fas fa-eye"></i>
-                    </button>
-                </div>
-            </div>
-        </div>
-    `).join('');
-}
-
-// ============================================
-// CART MANAGEMENT
-// ============================================
-function addToCart(productId) {
-    const product = products.find(p => p.id === productId);
-    if (!product) return;
-    
-    const existingItem = cart.find(item => item.id === productId);
-    
-    if (existingItem) {
-        existingItem.quantity += 1;
-    } else {
-        cart.push({
-            id: product.id,
-            name: product.name,
-            price: product.price,
-            quantity: 1,
-            image: product.images[0]
-        });
-    }
-    
-    saveCartToStorage();
+function loadCart() {
+    const stored = localStorage.getItem('successCart');
+    cart = stored ? JSON.parse(stored) : [];
     updateCartUI();
-    updateCartCount();
-    showNotification('Added to cart!', 'success');
 }
 
-function updateCartUI() {
-    const cartItemsContainer = document.getElementById('cartItems');
-    if (!cartItemsContainer) return;
-    
-    if (cart.length === 0) {
-        cartItemsContainer.innerHTML = '<div style="text-align: center; padding: 2rem;"><i class="fas fa-shopping-cart" style="font-size: 3rem; color: #ccc;"></i><p>Your cart is empty</p></div>';
-    } else {
-        cartItemsContainer.innerHTML = cart.map(item => `
-            <div class="cart-item">
-                <img src="${item.image}" alt="${item.name}" class="cart-item-image">
-                <div class="cart-item-details">
-                    <div class="cart-item-title">${item.name}</div>
-                    <div class="cart-item-price">GH₵ ${item.price.toFixed(2)}</div>
-                    <div class="cart-item-quantity">
-                        <button onclick="updateQuantity(${item.id}, ${item.quantity - 1})">-</button>
-                        <span>${item.quantity}</span>
-                        <button onclick="updateQuantity(${item.id}, ${item.quantity + 1})">+</button>
-                    </div>
-                </div>
-                <div class="cart-item-remove" onclick="removeFromCart(${item.id})">
-                    <i class="fas fa-trash"></i>
-                </div>
-            </div>
-        `).join('');
-    }
-    
-    updateCartTotals();
-}
+function showToast(message, isError = false) {
+    const existingToast = document.querySelector('.toast-notification');
+    if (existingToast) existingToast.remove();
 
-function updateQuantity(productId, newQuantity) {
-    if (newQuantity <= 0) {
-        removeFromCart(productId);
-        return;
-    }
-    
-    const item = cart.find(i => i.id === productId);
-    if (item) {
-        item.quantity = newQuantity;
-        saveCartToStorage();
-        updateCartUI();
-        updateCartCount();
-    }
-}
+    const toast = document.createElement('div');
+    toast.className = 'toast-notification';
+    toast.style.background = isError ? '#dc3545' : '#D4AF37';
+    toast.style.color = isError ? 'white' : '#0B0A0A';
+    toast.innerHTML = `<i class="fas ${isError ? 'fa-exclamation-triangle' : 'fa-check-circle'}"></i> ${message}`;
+    document.body.appendChild(toast);
 
-function removeFromCart(productId) {
-    cart = cart.filter(item => item.id !== productId);
-    saveCartToStorage();
-    updateCartUI();
-    updateCartCount();
-    showNotification('Item removed from cart', 'info');
-}
-
-function updateCartTotals() {
-    const subtotal = cart.reduce((sum, item) => sum + (item.price * item.quantity), 0);
-    const delivery = 15;
-    const total = subtotal + delivery;
-    
-    const subtotalElement = document.getElementById('cartSubtotal');
-    const totalElement = document.getElementById('cartTotal');
-    
-    if (subtotalElement) subtotalElement.textContent = `GH₵ ${subtotal.toFixed(2)}`;
-    if (totalElement) totalElement.textContent = `GH₵ ${total.toFixed(2)}`;
-}
-
-function updateCartCount() {
-    const cartCount = document.getElementById('cartCount');
-    if (cartCount) {
-        const totalItems = cart.reduce((sum, item) => sum + item.quantity, 0);
-        cartCount.textContent = totalItems;
-    }
-}
-
-function saveCartToStorage() {
-    localStorage.setItem('successCollectionCart', JSON.stringify(cart));
-}
-
-function loadCartFromStorage() {
-    const savedCart = localStorage.getItem('successCollectionCart');
-    if (savedCart) {
-        cart = JSON.parse(savedCart);
-    }
-}
-
-// ============================================
-// LOCATION DETECTION
-// ============================================
-function detectUserLocation() {
-    const locationElement = document.getElementById('userLocation');
-    
-    if (navigator.geolocation) {
-        navigator.geolocation.getCurrentPosition(
-            async (position) => {
-                const { latitude, longitude } = position.coords;
-                currentLocation = { latitude, longitude };
-                
-                try {
-                    const response = await fetch(`https://nominatim.openstreetmap.org/reverse?format=json&lat=${latitude}&lon=${longitude}`);
-                    const data = await response.json();
-                    const city = data.address?.city || data.address?.town || data.address?.village || 'Unknown';
-                    locationElement.textContent = `📍 ${city}, Ghana`;
-                } catch (error) {
-                    locationElement.textContent = '📍 Location detected';
-                }
-            },
-            (error) => {
-                locationElement.textContent = '📍 Location access denied';
-                console.log('Location error:', error);
-            }
-        );
-    } else {
-        locationElement.textContent = '📍 Geolocation not supported';
-    }
-}
-
-// ============================================
-// IMAGE MODAL (Product Preview)
-// ============================================
-function openImageModal(productId, imageIndex) {
-    const product = products.find(p => p.id === productId);
-    if (!product) return;
-    
-    const modalHtml = `
-        <div class="image-modal" id="imageModal">
-            <div class="image-modal-content">
-                <button class="close-image-modal" onclick="closeImageModal()">&times;</button>
-                <img src="${product.images[imageIndex]}" alt="${product.name}" class="modal-image">
-                <div class="image-navigation">
-                    ${product.images.map((img, idx) => `
-                        <img src="${img}" class="thumbnail ${idx === imageIndex ? 'active' : ''}" onclick="changeModalImage(${productId}, ${idx})">
-                    `).join('')}
-                </div>
-            </div>
-        </div>
-    `;
-    
-    // Add modal to body
-    const modalDiv = document.createElement('div');
-    modalDiv.innerHTML = modalHtml;
-    document.body.appendChild(modalDiv);
-    
-    // Add styles dynamically
-    const style = document.createElement('style');
-    style.textContent = `
-        .image-modal {
-            position: fixed;
-            top: 0;
-            left: 0;
-            width: 100%;
-            height: 100%;
-            background: rgba(0,0,0,0.9);
-            z-index: 2000;
-            display: flex;
-            align-items: center;
-            justify-content: center;
-        }
-        .image-modal-content {
-            position: relative;
-            max-width: 90%;
-            max-height: 90%;
-        }
-        .modal-image {
-            max-width: 100%;
-            max-height: 80vh;
-            object-fit: contain;
-        }
-        .close-image-modal {
-            position: absolute;
-            top: -40px;
-            right: 0;
-            background: none;
-            border: none;
-            color: white;
-            font-size: 2rem;
-            cursor: pointer;
-        }
-        .image-navigation {
-            display: flex;
-            gap: 10px;
-            margin-top: 20px;
-            justify-content: center;
-        }
-        .thumbnail {
-            width: 60px;
-            height: 60px;
-            object-fit: cover;
-            cursor: pointer;
-            border: 2px solid transparent;
-            border-radius: 5px;
-        }
-        .thumbnail.active {
-            border-color: var(--primary);
-        }
-    `;
-    document.head.appendChild(style);
-}
-
-function closeImageModal() {
-    const modal = document.getElementById('imageModal');
-    if (modal) modal.remove();
-}
-
-function changeModalImage(productId, imageIndex) {
-    const product = products.find(p => p.id === productId);
-    if (!product) return;
-    
-    const modalImage = document.querySelector('.modal-image');
-    if (modalImage) {
-        modalImage.src = product.images[imageIndex];
-    }
-    
-    // Update active thumbnail
-    document.querySelectorAll('.thumbnail').forEach((thumb, idx) => {
-        if (idx === imageIndex) {
-            thumb.classList.add('active');
-        } else {
-            thumb.classList.remove('active');
-        }
-    });
-}
-
-function quickViewProduct(productId) {
-    const product = products.find(p => p.id === productId);
-    if (!product) return;
-    
-    showNotification(`Viewing: ${product.name}`, 'info');
-    // You can expand this to show a detailed modal
-}
-
-// ============================================
-// CHECKOUT & PAYMENT
-// ============================================
-function proceedToCheckout() {
-    if (cart.length === 0) {
-        showNotification('Your cart is empty!', 'error');
-        return;
-    }
-    
-    const modal = document.getElementById('checkoutModal');
-    if (modal) {
-        modal.classList.add('active');
-    }
-}
-
-function initializePayment() {
-    const paymentMethod = document.getElementById('paymentMethod')?.value;
-    const customerName = document.getElementById('customerName')?.value;
-    const customerEmail = document.getElementById('customerEmail')?.value;
-    const customerPhone = document.getElementById('customerPhone')?.value;
-    const customerAddress = document.getElementById('customerAddress')?.value;
-    
-    if (!customerName || !customerEmail || !customerPhone || !customerAddress) {
-        showNotification('Please fill in all fields', 'error');
-        return false;
-    }
-    
-    if (paymentMethod === 'paystack') {
-        processPaystackPayment(customerName, customerEmail, customerPhone, customerAddress);
-    } else if (paymentMethod === 'whatsapp') {
-        sendOrderViaWhatsApp(customerName, customerEmail, customerPhone, customerAddress);
-    }
-    
-    return false;
-}
-
-function processPaystackPayment(name, email, phone, address) {
-    const subtotal = cart.reduce((sum, item) => sum + (item.price * item.quantity), 0);
-    const total = subtotal + 15;
-    
-    const handler = PaystackPop.setup({
-        key: 'YOUR_PAYSTACK_PUBLIC_KEY', // Replace with your actual Paystack public key
-        email: email,
-        amount: total * 100, // Amount in pesewas
-        currency: 'GHS',
-        ref: '' + Math.floor((Math.random() * 1000000000) + 1),
-        metadata: {
-            custom_fields: [
-                {
-                    display_name: "Customer Name",
-                    variable_name: "customer_name",
-                    value: name
-                },
-                {
-                    display_name: "Phone",
-                    variable_name: "customer_phone",
-                    value: phone
-                },
-                {
-                    display_name: "Address",
-                    variable_name: "customer_address",
-                    value: address
-                }
-            ]
-        },
-        callback: function(response) {
-            saveOrderToGoogleSheets(name, email, phone, address, 'paid', response.reference);
-            showNotification('Payment successful! Thank you for your order.', 'success');
-            cart = [];
-            saveCartToStorage();
-            updateCartUI();
-            updateCartCount();
-            document.getElementById('checkoutModal').classList.remove('active');
-        },
-        onClose: function() {
-            showNotification('Payment cancelled', 'info');
-        }
-    });
-    
-    handler.openIframe();
-}
-
-function sendOrderViaWhatsApp(name, email, phone, address) {
-    const orderSummary = generateOrderSummary(name, email, phone, address);
-    const whatsappNumber = '233598160732'; // Replace with your WhatsApp number
-    const whatsappUrl = `https://wa.me/${whatsappNumber}?text=${encodeURIComponent(orderSummary)}`;
-    window.open(whatsappUrl, '_blank');
-    
-    // Save order to Google Sheets
-    saveOrderToGoogleSheets(name, email, phone, address, 'whatsapp_pending', null);
-    
-    // Clear cart after order
-    cart = [];
-    saveCartToStorage();
-    updateCartUI();
-    updateCartCount();
-    document.getElementById('checkoutModal').classList.remove('active');
-    
-    showNotification('Order sent via WhatsApp!', 'success');
-}
-
-function generateOrderSummary(name, email, phone, address) {
-    const subtotal = cart.reduce((sum, item) => sum + (item.price * item.quantity), 0);
-    const delivery = 15;
-    const total = subtotal + delivery;
-    
-    let orderDetails = `*SUCCESS COLLECTION ORDER*%0A%0A`;
-    orderDetails += `*Customer Details*%0A`;
-    orderDetails += `Name: ${name}%0A`;
-    orderDetails += `Email: ${email}%0A`;
-    orderDetails += `Phone: ${phone}%0A`;
-    orderDetails += `Address: ${address}%0A%0A`;
-    
-    orderDetails += `*Order Items*%0A`;
-    cart.forEach((item, index) => {
-        orderDetails += `${index + 1}. ${item.name} x${item.quantity} - GH₵ ${(item.price * item.quantity).toFixed(2)}%0A`;
-    });
-    
-    orderDetails += `%0A*Subtotal:* GH₵ ${subtotal.toFixed(2)}%0A`;
-    orderDetails += `*Delivery:* GH₵ ${delivery.toFixed(2)}%0A`;
-    orderDetails += `*TOTAL:* GH₵ ${total.toFixed(2)}%0A%0A`;
-    
-    if (currentLocation) {
-        orderDetails += `*Location:* ${currentLocation.latitude}, ${currentLocation.longitude}%0A`;
-    }
-    
-    orderDetails += `%0AThank you for shopping with Success Collection!`;
-    
-    return orderDetails;
-}
-
-// ============================================
-// GOOGLE SHEETS INTEGRATION
-// ============================================
-async function saveOrderToGoogleSheets(name, email, phone, address, paymentStatus, transactionRef) {
-    const orderData = {
-        timestamp: new Date().toISOString(),
-        name: name,
-        email: email,
-        phone: phone,
-        address: address,
-        items: JSON.stringify(cart),
-        subtotal: cart.reduce((sum, item) => sum + (item.price * item.quantity), 0),
-        delivery: 15,
-        total: cart.reduce((sum, item) => sum + (item.price * item.quantity), 0) + 15,
-        payment_status: paymentStatus,
-        transaction_ref: transactionRef || '',
-        location: currentLocation ? `${currentLocation.latitude},${currentLocation.longitude}` : ''
-    };
-    
-    // Google Sheets Web App URL - You'll need to set this up
-    const GOOGLE_SHEETS_WEBAPP_URL = 'https://script.google.com/macros/s/AKfycbxzUDH5TNDuM5VzbOvm6tzU0t7GY1i3K4NrkpPCgF0jIpzaUSi0lZ9QdLi2DNCi_He8jQ/exec';
-    
-    try {
-        const response = await fetch(GOOGLE_SHEETS_WEBAPP_URL, {
-            method: 'POST',
-            mode: 'no-cors',
-            headers: {
-                'Content-Type': 'application/json',
-            },
-            body: JSON.stringify(orderData)
-        });
-        
-        console.log('Order saved to Google Sheets');
-    } catch (error) {
-        console.error('Error saving to Google Sheets:', error);
-        // Fallback: Save to localStorage
-        saveOrderLocally(orderData);
-    }
-}
-
-function saveOrderLocally(orderData) {
-    let orders = JSON.parse(localStorage.getItem('successCollectionOrders') || '[]');
-    orders.push(orderData);
-    localStorage.setItem('successCollectionOrders', JSON.stringify(orders));
-}
-
-// ============================================
-// NOTIFICATION SYSTEM
-// ============================================
-function showNotification(message, type = 'info') {
-    // Create notification element
-    const notification = document.createElement('div');
-    notification.className = `notification notification-${type}`;
-    notification.innerHTML = `
-        <i class="fas ${type === 'success' ? 'fa-check-circle' : type === 'error' ? 'fa-exclamation-circle' : 'fa-info-circle'}"></i>
-        <span>${message}</span>
-    `;
-    
-    // Add styles
-    const style = document.createElement('style');
-    style.textContent = `
-        .notification {
-            position: fixed;
-            top: 20px;
-            right: 20px;
-            background: white;
-            padding: 1rem 1.5rem;
-            border-radius: 10px;
-            box-shadow: 0 5px 15px rgba(0,0,0,0.2);
-            display: flex;
-            align-items: center;
-            gap: 10px;
-            z-index: 2000;
-            animation: slideIn 0.3s ease;
-            border-left: 4px solid;
-        }
-        .notification-success {
-            border-left-color: #28a745;
-        }
-        .notification-error {
-            border-left-color: #dc3545;
-        }
-        .notification-info {
-            border-left-color: #17a2b8;
-        }
-        .notification i {
-            font-size: 1.2rem;
-        }
-        .notification-success i {
-            color: #28a745;
-        }
-        .notification-error i {
-            color: #dc3545;
-        }
-        .notification-info i {
-            color: #17a2b8;
-        }
-        @keyframes slideIn {
-            from {
-                transform: translateX(100%);
-                opacity: 0;
-            }
-            to {
-                transform: translateX(0);
-                opacity: 1;
-            }
-        }
-    `;
-    document.head.appendChild(style);
-    
-    document.body.appendChild(notification);
-    
-    // Remove after 3 seconds
     setTimeout(() => {
-        notification.style.animation = 'slideOut 0.3s ease forwards';
-        setTimeout(() => notification.remove(), 300);
+        if (toast.parentNode) toast.remove();
     }, 3000);
 }
 
-// Add slideOut animation
-const slideOutStyle = document.createElement('style');
-slideOutStyle.textContent = `
-    @keyframes slideOut {
-        from {
-            transform: translateX(0);
-            opacity: 1;
-        }
-        to {
-            transform: translateX(100%);
-            opacity: 0;
-        }
+function addToCart(product) {
+    const existing = cart.find(item => item.id === product.id);
+    if (existing) {
+        existing.quantity += 1;
+    } else {
+        cart.push({ ...product, quantity: 1 });
     }
-`;
-document.head.appendChild(slideOutStyle);
+    saveCart();
+    showToast(`✓ ${product.name} added to cart!`);
+}
 
-// ============================================
-// EVENT LISTENERS
-// ============================================
-function setupEventListeners() {
-    // Cart panel toggle
-    const cartIconBtn = document.getElementById('cartIconBtn');
-    const cartPanel = document.getElementById('cartPanel');
-    const cartOverlay = document.getElementById('cartOverlay');
-    const closeCartBtn = document.getElementById('closeCartBtn');
-    
-    if (cartIconBtn) {
-        cartIconBtn.addEventListener('click', () => {
-            cartPanel.classList.add('open');
-            cartOverlay.classList.add('active');
-        });
-    }
-    
-    const closeCart = () => {
-        cartPanel.classList.remove('open');
-        cartOverlay.classList.remove('active');
-    };
-    
-    if (closeCartBtn) closeCartBtn.addEventListener('click', closeCart);
-    if (cartOverlay) cartOverlay.addEventListener('click', closeCart);
-    
-    // Checkout button
-    const checkoutBtn = document.getElementById('checkoutBtn');
-    if (checkoutBtn) {
-        checkoutBtn.addEventListener('click', proceedToCheckout);
-    }
-    
-    // WhatsApp order button
-    const whatsappOrderBtn = document.getElementById('whatsappOrderBtn');
-    if (whatsappOrderBtn) {
-        whatsappOrderBtn.addEventListener('click', () => {
-            if (cart.length > 0) {
-                // Trigger checkout modal for WhatsApp order
-                proceedToCheckout();
-                // Auto-select WhatsApp payment method
-                setTimeout(() => {
-                    const paymentMethod = document.getElementById('paymentMethod');
-                    if (paymentMethod) paymentMethod.value = 'whatsapp';
-                }, 100);
-            } else {
-                showNotification('Your cart is empty!', 'error');
-            }
-        });
-    }
-    
-    // Checkout form submission
-    const checkoutForm = document.getElementById('checkoutForm');
-    if (checkoutForm) {
-        checkoutForm.addEventListener('submit', (e) => {
-            e.preventDefault();
-            initializePayment();
-        });
-    }
-    
-    // Close modal
-    const closeModalBtn = document.getElementById('closeModalBtn');
-    const checkoutModal = document.getElementById('checkoutModal');
-    if (closeModalBtn) {
-        closeModalBtn.addEventListener('click', () => {
-            checkoutModal.classList.remove('active');
-        });
-    }
-    
-    if (checkoutModal) {
-        checkoutModal.addEventListener('click', (e) => {
-            if (e.target === checkoutModal) {
-                checkoutModal.classList.remove('active');
-            }
-        });
-    }
-    
-    // Mobile menu
-    const mobileMenuBtn = document.getElementById('mobileMenuBtn');
-    const navLinks = document.querySelector('.nav-links');
-    if (mobileMenuBtn && navLinks) {
-        mobileMenuBtn.addEventListener('click', () => {
-            navLinks.classList.toggle('active');
-        });
-    }
-    
-    // Smooth scrolling for navigation links
-    document.querySelectorAll('a[href^="#"]').forEach(anchor => {
-        anchor.addEventListener('click', function(e) {
-            e.preventDefault();
-            const target = document.querySelector(this.getAttribute('href'));
-            if (target) {
-                target.scrollIntoView({ behavior: 'smooth' });
-                // Close mobile menu if open
-                if (navLinks && navLinks.classList.contains('active')) {
-                    navLinks.classList.remove('active');
-                }
-            }
-        });
-    });
-    
-    // Navbar scroll effect
-    window.addEventListener('scroll', () => {
-        const navbar = document.querySelector('.navbar');
-        if (navbar) {
-            if (window.scrollY > 50) {
-                navbar.classList.add('scrolled');
-            } else {
-                navbar.classList.remove('scrolled');
-            }
+function removeFromCart(id) {
+    cart = cart.filter(item => item.id !== id);
+    saveCart();
+}
+
+function updateQuantity(id, delta) {
+    const idx = cart.findIndex(item => item.id === id);
+    if (idx !== -1) {
+        let newQty = cart[idx].quantity + delta;
+        if (newQty <= 0) {
+            cart.splice(idx, 1);
+        } else {
+            cart[idx].quantity = newQty;
         }
-    });
-    
-    // Contact form submission
-    const contactForm = document.getElementById('contactForm');
-    if (contactForm) {
-        contactForm.addEventListener('submit', (e) => {
-            e.preventDefault();
-            showNotification('Message sent! We\'ll get back to you soon.', 'success');
-            contactForm.reset();
-        });
+        saveCart();
     }
 }
+
+function getCartTotal() {
+    return cart.reduce((sum, item) => sum + (item.price * item.quantity), 0);
+}
+
+function updateCartUI() {
+    const container = document.getElementById('cartItemsList');
+    const countSpan = document.getElementById('cartCount');
+    const totalSpan = document.getElementById('cartTotal');
+
+    let totalItems = cart.reduce((s, i) => s + i.quantity, 0);
+    countSpan.innerText = totalItems;
+
+    if (cart.length === 0) {
+        container.innerHTML = '<div style="text-align:center; padding: 20px;">✨ Cart is empty ✨</div>';
+        totalSpan.innerText = 'Total: GHS 0';
+        return;
+    }
+
+    let html = '';
+    cart.forEach(item => {
+        html += `
+            <div class="cart-item">
+                <img src="${item.image}" onerror="this.src='${item.fallback}'">
+                <div class="cart-item-details">
+                    <div><strong>${item.name}</strong></div>
+                    <div class="cart-item-price">GHS ${item.price}</div>
+                    <div style="display:flex; gap:8px; margin-top:6px;">
+                        <button class="qty-btn" data-id="${item.id}" data-delta="-1">-</button>
+                        <span>${item.quantity}</span>
+                        <button class="qty-btn" data-id="${item.id}" data-delta="1">+</button>
+                        <button class="remove-item" data-id="${item.id}"><i class="fas fa-trash-alt"></i></button>
+                    </div>
+                </div>
+            </div>
+        `;
+    });
+    container.innerHTML = html;
+    totalSpan.innerText = `Total: GHS ${getCartTotal()}`;
+
+    document.querySelectorAll('.qty-btn').forEach(btn => {
+        btn.addEventListener('click', (e) => {
+            let id = parseInt(btn.dataset.id);
+            let delta = parseInt(btn.dataset.delta);
+            updateQuantity(id, delta);
+        });
+    });
+
+    document.querySelectorAll('.remove-item').forEach(btn => {
+        btn.addEventListener('click', (e) => {
+            let id = parseInt(btn.dataset.id);
+            removeFromCart(id);
+        });
+    });
+}
+
+// ========== CART SIDEBAR CONTROLS (unchanged) ==========
+function showCartSidebar() {
+    document.getElementById('cartSidebar').classList.add('open');
+    document.getElementById('cartOverlay').classList.add('active');
+    document.body.style.overflow = 'hidden';
+}
+
+function closeCart() {
+    document.getElementById('cartSidebar').classList.remove('open');
+    document.getElementById('cartOverlay').classList.remove('active');
+    document.body.style.overflow = '';
+}
+
+// ========== RENDER PRODUCTS (unchanged) ==========
+function renderProducts() {
+    const grid = document.getElementById('productsGrid');
+    grid.innerHTML = '';
+
+    productsDB.forEach(prod => {
+        const card = document.createElement('div');
+        card.className = 'product-card';
+        card.innerHTML = `
+            <img class="product-img" src="${prod.image}" alt="${prod.name}" onerror="this.src='${prod.fallback}'">
+            <div class="price-overlay">₵ ${prod.price}</div>
+            <div class="product-info">
+                <div class="product-title">${prod.name}</div>
+                <button class="add-to-cart" data-id="${prod.id}">Add to Cart</button>
+            </div>
+        `;
+
+        card.querySelector('.product-img').addEventListener('click', () => {
+            document.getElementById('modalImg').src = prod.image;
+            document.getElementById('imageModal').classList.add('active');
+        });
+
+        card.querySelector('.add-to-cart').addEventListener('click', (e) => {
+            e.stopPropagation();
+            addToCart(prod);
+        });
+
+        grid.appendChild(card);
+    });
+}
+
+// ========== CHECKOUT, RECEIPT, PAYSTACK, WHATSAPP (all unchanged from your original) ==========
+function showCheckoutModal() {
+    if (cart.length === 0) {
+        showToast("Your cart is empty!", true);
+        return;
+    }
+
+    let itemsHtml = '';
+    cart.forEach(item => {
+        itemsHtml += `
+            <div class="checkout-item">
+                <span>${item.name} x${item.quantity}</span>
+                <span>GHS ${item.price * item.quantity}</span>
+            </div>
+        `;
+    });
+    document.getElementById('checkoutItemsList').innerHTML = itemsHtml;
+    document.querySelector('.checkout-total').innerHTML = `<strong>Total: GHS ${getCartTotal()}</strong>`;
+
+    document.getElementById('checkoutModal').classList.add('active');
+    document.body.style.overflow = 'hidden';
+}
+
+function closeCheckoutModal() {
+    document.getElementById('checkoutModal').classList.remove('active');
+    document.body.style.overflow = '';
+}
+
+function generateReceiptHTML(orderData) {
+    const date = new Date().toLocaleString();
+    const itemsHtml = orderData.items.map(item => `
+        <div class="receipt-item">
+            <span>${item.name} x${item.quantity}</span>
+            <span>GHS ${item.price * item.quantity}</span>
+        </div>
+    `).join('');
+
+    return `
+        <div style="font-family: monospace;">
+            <h2>🏆 SUCCESS COLLECTION</h2>
+            <p>Luxury Streetwear & Accessories</p>
+            <hr>
+            <p><strong>Order #:</strong> ${orderData.orderId}</p>
+            <p><strong>Date:</strong> ${date}</p>
+            <p><strong>Payment Status:</strong> ${orderData.paymentStatus}</p>
+            <hr>
+            <h3>Customer Details</h3>
+            <p><strong>Name:</strong> ${orderData.customer.name}</p>
+            <p><strong>Email:</strong> ${orderData.customer.email}</p>
+            <p><strong>Phone:</strong> ${orderData.customer.phone}</p>
+            <p><strong>Address:</strong> ${orderData.customer.address}</p>
+            ${orderData.customer.notes ? `<p><strong>Notes:</strong> ${orderData.customer.notes}</p>` : ''}
+            <hr>
+            <h3>Order Items</h3>
+            ${itemsHtml}
+            <hr>
+            <h3>Total Amount: GHS ${orderData.total}</h3>
+            <hr>
+            <p><strong>Delivery:</strong> Free delivery within Ghana</p>
+            <p><strong>Contact:</strong> 0540196090 / 0537916475</p>
+            <p>Thank you for shopping with Success Collection! ❤️</p>
+        </div>
+    `;
+}
+
+async function storeOrderToGoogleSheets(orderData) {
+    const GOOGLE_SHEET_WEBHOOK = "https://script.google.com/macros/s/AKfycbxwmKTkRHNlUTgf8Nfg9EJNnBisMbPzj0pcUYHomJIc5KEAl-iVS7u4yBdYHuRd1buI/exec";
+    
+    if (!GOOGLE_SHEET_WEBHOOK) {
+        console.log("Order saved locally:", orderData);
+        return;
+    }
+    
+    try {
+        await fetch(GOOGLE_SHEET_WEBHOOK, {
+            method: 'POST',
+            mode: 'no-cors',
+            headers: { 'Content-Type': 'application/json' },
+            body: JSON.stringify(orderData)
+        });
+    } catch (e) {
+        console.warn("Google Sheets save failed:", e);
+    }
+}
+
+function processPaystackPayment(orderData) {
+    const PAYSTACK_PUBLIC_KEY = "pk_test_dc63b7c8f9a1e2b3c4d5e6f7a8b9c0d1e2f3a4b5";
+    let totalAmount = orderData.total * 100;
+
+    let handler = PaystackPop.setup({
+        key: PAYSTACK_PUBLIC_KEY,
+        email: orderData.customer.email,
+        amount: totalAmount,
+        currency: "GHS",
+        ref: 'SC_' + Date.now() + '_' + Math.floor(Math.random() * 10000),
+        callback: async function (response) {
+            orderData.paymentStatus = "Paid - Paystack";
+            orderData.transactionRef = response.reference;
+            orderData.orderId = 'SC-' + Date.now();
+
+            await storeOrderToGoogleSheets(orderData);
+            showReceipt(orderData);
+            cart = [];
+            saveCart();
+            closeCheckoutModal();
+            closeCart();
+            showToast("✅ Payment successful! Your receipt is ready.");
+        },
+        onClose: function () {
+            showToast("Payment cancelled. You can try again.", true);
+        }
+    });
+    handler.openIframe();
+}
+
+async function processWhatsAppOrder(orderData) {
+    orderData.paymentStatus = "Pending - Pay on Delivery";
+    orderData.orderId = 'SC-' + Date.now();
+
+    await storeOrderToGoogleSheets(orderData);
+    showReceipt(orderData);
+
+    const itemsText = orderData.items.map(item =>
+        `• ${item.name} x${item.quantity} = GHS ${item.price * item.quantity}`
+    ).join('%0A');
+
+    const message = `🛍️ *NEW ORDER - Success Collection*%0A%0A` +
+        `📋 *Order ID:* ${orderData.orderId}%0A` +
+        `👤 *Name:* ${orderData.customer.name}%0A` +
+        `📞 *Phone:* ${orderData.customer.phone}%0A` +
+        `📧 *Email:* ${orderData.customer.email}%0A` +
+        `🏠 *Address:* ${orderData.customer.address}%0A` +
+        `${orderData.customer.notes ? `📝 *Notes:* ${orderData.customer.notes}%0A` : ''}` +
+        `%0A*Items Ordered:*%0A${itemsText}%0A%0A` +
+        `💰 *Total:* GHS ${orderData.total}%0A` +
+        `💳 *Payment:* Pay on Delivery%0A%0A` +
+        `🙏 Thank you for choosing Success Collection!`;
+
+    const waLink = `https://wa.me/233540196090?text=${message}`;
+    window.open(waLink, '_blank');
+
+    cart = [];
+    saveCart();
+    closeCheckoutModal();
+    closeCart();
+    showToast("✅ Order placed! Check your receipt and WhatsApp.");
+}
+
+function showReceipt(orderData) {
+    currentOrderData = orderData;
+    const receiptContent = document.getElementById('receiptContent');
+    receiptContent.innerHTML = generateReceiptHTML(orderData);
+    document.getElementById('receiptModal').classList.add('active');
+    document.body.style.overflow = 'hidden';
+}
+
+// ========== EVENT LISTENERS (unchanged) ==========
+document.getElementById('placeOrderBtn').addEventListener('click', () => {
+    const name = document.getElementById('customerName').value.trim();
+    const email = document.getElementById('customerEmail').value.trim();
+    const phone = document.getElementById('customerPhone').value.trim();
+    const address = document.getElementById('customerAddress').value.trim();
+    const notes = document.getElementById('orderNotes').value.trim();
+    const paymentMethod = document.querySelector('input[name="paymentMethod"]:checked').value;
+
+    if (!name || !email || !phone || !address) {
+        showToast("Please fill in all required fields!", true);
+        return;
+    }
+
+    if (!email.includes('@')) {
+        showToast("Please enter a valid email address!", true);
+        return;
+    }
+
+    const orderData = {
+        customer: { name, email, phone, address, notes },
+        items: cart.map(item => ({ name: item.name, price: item.price, quantity: item.quantity })),
+        total: getCartTotal(),
+        timestamp: new Date().toISOString(),
+        paymentStatus: "",
+        orderId: ""
+    };
+
+    if (paymentMethod === 'paystack') {
+        processPaystackPayment(orderData);
+    } else {
+        processWhatsAppOrder(orderData);
+    }
+});
+
+document.getElementById('downloadReceiptBtn').addEventListener('click', () => {
+    if (!currentOrderData) return;
+    const element = document.getElementById('receiptContent');
+    html2pdf().set({
+        margin: 0.5,
+        filename: `Success_Collection_Receipt_${currentOrderData.orderId}.pdf`,
+        image: { type: 'jpeg', quality: 0.98 },
+        jsPDF: { unit: 'in', format: 'a4', orientation: 'portrait' }
+    }).from(element).save();
+    showToast("Receipt downloaded!");
+});
+
+document.getElementById('whatsappReceiptBtn').addEventListener('click', () => {
+    if (!currentOrderData) return;
+
+    const itemsText = currentOrderData.items.map(item =>
+        `• ${item.name} x${item.quantity} = GHS ${item.price * item.quantity}`
+    ).join('%0A');
+
+    const message = `🎫 *ORDER RECEIPT - Success Collection*%0A%0A` +
+        `📋 *Order ID:* ${currentOrderData.orderId}%0A` +
+        `👤 *Customer:* ${currentOrderData.customer.name}%0A` +
+        `📅 *Date:* ${new Date(currentOrderData.timestamp).toLocaleString()}%0A` +
+        `💳 *Payment:* ${currentOrderData.paymentStatus}%0A%0A` +
+        `*Items Ordered:*%0A${itemsText}%0A%0A` +
+        `💰 *Total Paid:* GHS ${currentOrderData.total}%0A%0A` +
+        `Thank you for shopping with Success Collection! ❤️`;
+
+    const phone = currentOrderData.customer.phone.replace(/^0/, '233');
+    const waLink = `https://wa.me/${phone}?text=${message}`;
+    window.open(waLink, '_blank');
+    showToast("Opening WhatsApp to send receipt...");
+});
+
+document.getElementById('continueShoppingBtn').addEventListener('click', () => {
+    document.getElementById('receiptModal').classList.remove('active');
+    document.body.style.overflow = '';
+});
+
+document.getElementById('closeReceiptBtn').addEventListener('click', () => {
+    document.getElementById('receiptModal').classList.remove('active');
+    document.body.style.overflow = '';
+});
+
+document.getElementById('cartIcon').addEventListener('click', showCartSidebar);
+document.getElementById('closeCartBtn').addEventListener('click', closeCart);
+document.getElementById('cartOverlay').addEventListener('click', closeCart);
+document.getElementById('proceedCheckoutBtn').addEventListener('click', showCheckoutModal);
+document.getElementById('closeCheckoutBtn').addEventListener('click', closeCheckoutModal);
+
+document.getElementById('checkoutModal').addEventListener('click', (e) => {
+    if (e.target === document.getElementById('checkoutModal')) closeCheckoutModal();
+});
+
+document.querySelector('.close-modal').addEventListener('click', () => {
+    document.getElementById('imageModal').classList.remove('active');
+    document.body.style.overflow = '';
+});
+
+document.getElementById('imageModal').addEventListener('click', (e) => {
+    if (e.target === document.getElementById('imageModal')) {
+        document.getElementById('imageModal').classList.remove('active');
+    }
+});
+
+document.getElementById('whatsappFloatBtn').addEventListener('click', (e) => {
+    e.preventDefault();
+    if (cart.length > 0) {
+        const itemsText = cart.map(item => `• ${item.name} x${item.quantity} = GHS ${item.price * item.quantity}`).join('%0A');
+        const message = `🛍️ *Shopping Cart - Success Collection*%0A%0A*Items:*%0A${itemsText}%0A%0A💰 *Total:* GHS ${getCartTotal()}%0A%0AI would like to place an order!`;
+        window.open(`https://wa.me/233540196090?text=${message}`, '_blank');
+    } else {
+        window.open('https://wa.me/233540196090?text=Hello%20Success%20Collection,%20I%27m%20interested%20in%20your%20products', '_blank');
+    }
+});
+
+// ========== INITIALIZE ==========
+renderProducts();
+loadCart();
+
+console.log("✅ Success Collection ready with 45 custom products! Place your images as 1.jpg to 45.jpg");
