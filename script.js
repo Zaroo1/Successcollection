@@ -324,7 +324,7 @@ const GOOGLE_SHEET_WEBHOOK = "https://script.google.com/macros/s/AKfycbxwmKTkRHN
 }
 
 function processPaystackPayment(orderData) {
-    const PAYSTACK_PUBLIC_KEY = "pk_test_dc63b7c8f9a1e2b3c4d5e6f7a8b9c0d1e2f3a4b5";
+    const PAYSTACK_PUBLIC_KEY = "sk_test_2a8e95ffa38ab96f4d7ff4e281c427f73a3258d9";
     let totalAmount = orderData.total * 100;
 
     let handler = PaystackPop.setup({
