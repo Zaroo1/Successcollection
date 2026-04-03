@@ -1,0 +1,251 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Admin Panel - Success Collection</title>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:opsz,wght@14..32,300;14..32,400;14..32,500;14..32,600;14..32,700&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css">
+    <link rel="stylesheet" href="admin.css">
+</head>
+<body>
+    <!-- Login Screen -->
+    <div class="login-container" id="loginContainer">
+        <div class="login-box">
+            <div class="login-logo">
+                <h2>🔐 Admin Access</h2>
+                <p>Success Collection Online</p>
+            </div>
+            <input type="password" id="adminPassword" placeholder="Enter Admin Password" autocomplete="off">
+            <button id="loginBtn">Login</button>
+            <div id="loginError" class="error-msg"></div>
+        </div>
+    </div>
+
+    <!-- Main Admin Dashboard (hidden until login) -->
+    <div class="admin-wrapper" id="adminWrapper" style="display: none;">
+        <!-- Sidebar -->
+        <div class="sidebar">
+            <div class="sidebar-header">
+                <h3><i class="fas fa-crown"></i> Success Admin</h3>
+            </div>
+            <nav class="sidebar-nav">
+                <a href="#" class="nav-item active" data-tab="dashboard">
+                    <i class="fas fa-tachometer-alt"></i> Dashboard
+                </a>
+                <a href="#" class="nav-item" data-tab="orders">
+                    <i class="fas fa-shopping-cart"></i> Orders
+                </a>
+                <a href="#" class="nav-item" data-tab="products">
+                    <i class="fas fa-tshirt"></i> Products
+                </a>
+                <a href="#" class="nav-item" data-tab="customers">
+                    <i class="fas fa-users"></i> Customers
+                </a>
+                <a href="#" class="nav-item" data-tab="settings">
+                    <i class="fas fa-cog"></i> Settings
+                </a>
+            </nav>
+            <div class="sidebar-footer">
+                <button id="logoutBtn" class="logout-btn"><i class="fas fa-sign-out-alt"></i> Logout</button>
+            </div>
+        </div>
+
+        <!-- Main Content -->
+        <div class="main-content">
+            <div class="top-bar">
+                <h2 id="pageTitle">Dashboard</h2>
+                <div class="admin-info">
+                    <span><i class="fas fa-user-shield"></i> Admin</span>
+                    <span id="currentTime"></span>
+                </div>
+            </div>
+
+            <!-- Dashboard Tab -->
+            <div id="dashboardTab" class="tab-content active">
+                <div class="stats-grid">
+                    <div class="stat-card">
+                        <i class="fas fa-shopping-bag"></i>
+                        <div class="stat-info">
+                            <h3 id="totalOrders">0</h3>
+                            <p>Total Orders</p>
+                        </div>
+                    </div>
+                    <div class="stat-card">
+                        <i class="fas fa-money-bill-wave"></i>
+                        <div class="stat-info">
+                            <h3 id="totalRevenue">GHS 0</h3>
+                            <p>Total Revenue</p>
+                        </div>
+                    </div>
+                    <div class="stat-card">
+                        <i class="fas fa-boxes"></i>
+                        <div class="stat-info">
+                            <h3 id="totalProducts">0</h3>
+                            <p>Products</p>
+                        </div>
+                    </div>
+                    <div class="stat-card">
+                        <i class="fas fa-users"></i>
+                        <div class="stat-info">
+                            <h3 id="totalCustomers">0</h3>
+                            <p>Customers</p>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="recent-orders">
+                    <h3>Recent Orders <i class="fas fa-clock"></i></h3>
+                    <div class="table-container">
+                        <table id="recentOrdersTable">
+                            <thead>
+                                <tr><th>Order ID</th><th>Customer</th><th>Total</th><th>Status</th><th>Date</th></tr>
+                            </thead>
+                            <tbody id="recentOrdersList"></tbody>
+                        </table>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Orders Tab -->
+            <div id="ordersTab" class="tab-content">
+                <div class="tab-header">
+                    <h3>All Orders</h3>
+                    <button id="refreshOrdersBtn" class="refresh-btn"><i class="fas fa-sync-alt"></i> Refresh</button>
+                </div>
+                <div class="table-container">
+                    <table id="ordersTable">
+                        <thead>
+                            <tr><th>Order ID</th><th>Customer</th><th>Email</th><th>Phone</th><th>Items</th><th>Total</th><th>Payment</th><th>Status</th><th>Date</th><th>Action</th></tr>
+                        </thead>
+                        <tbody id="ordersList"></tbody>
+                    </table>
+                </div>
+            </div>
+
+            <!-- Products Tab -->
+            <div id="productsTab" class="tab-content">
+                <div class="tab-header">
+                    <h3>Manage Products</h3>
+                    <button id="addProductBtn" class="add-btn"><i class="fas fa-plus"></i> Add Product</button>
+                </div>
+                <div class="table-container">
+                    <table id="productsTable">
+                        <thead>
+                            <tr><th>ID</th><th>Image</th><th>Product Name</th><th>Price (GHS)</th><th>Actions</th></tr>
+                        </thead>
+                        <tbody id="productsList"></tbody>
+                    </table>
+                </div>
+            </div>
+
+            <!-- Customers Tab -->
+            <div id="customersTab" class="tab-content">
+                <div class="tab-header">
+                    <h3>Customer List</h3>
+                    <button id="refreshCustomersBtn" class="refresh-btn"><i class="fas fa-sync-alt"></i> Refresh</button>
+                </div>
+                <div class="table-container">
+                    <table id="customersTable">
+                        <thead>
+                            <tr><th>Name</th><th>Email</th><th>Phone</th><th>Address</th><th>Orders</th><th>Last Order</th></tr>
+                        </thead>
+                        <tbody id="customersList"></tbody>
+                    </table>
+                </div>
+            </div>
+
+            <!-- Settings Tab -->
+            <div id="settingsTab" class="tab-content">
+                <div class="settings-section">
+                    <h3>Admin Settings</h3>
+                    <div class="setting-item">
+                        <label>Change Admin Password</label>
+                        <input type="password" id="newPassword" placeholder="New password">
+                        <button id="changePasswordBtn">Update Password</button>
+                    </div>
+                    <div class="setting-item">
+                        <label>Google Sheets Webhook URL</label>
+                        <input type="text" id="webhookUrl" placeholder="Paste Google Apps Script URL">
+                        <button id="saveWebhookBtn">Save</button>
+                    </div>
+                    <div class="setting-item">
+                        <label>Export All Orders (CSV)</label>
+                        <button id="exportOrdersBtn"><i class="fas fa-download"></i> Export CSV</button>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- Edit Product Modal -->
+    <div class="modal" id="editProductModal">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h3>Edit Product</h3>
+                <button class="close-modal">&times;</button>
+            </div>
+            <div class="modal-body">
+                <input type="hidden" id="editProductId">
+                <div class="form-group">
+                    <label>Product Name</label>
+                    <input type="text" id="editProductName">
+                </div>
+                <div class="form-group">
+                    <label>Price (GHS)</label>
+                    <input type="number" id="editProductPrice" step="1">
+                </div>
+                <div class="form-group">
+                    <label>Image Filename</label>
+                    <input type="text" id="editProductImage" placeholder="e.g., 25.jpg">
+                </div>
+            </div>
+            <div class="modal-footer">
+                <button id="saveProductBtn" class="save-btn">Save Changes</button>
+                <button id="deleteProductBtn" class="delete-btn">Delete Product</button>
+            </div>
+        </div>
+    </div>
+
+    <!-- Add Product Modal -->
+    <div class="modal" id="addProductModal">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h3>Add New Product</h3>
+                <button class="close-modal">&times;</button>
+            </div>
+            <div class="modal-body">
+                <div class="form-group">
+                    <label>Product Name</label>
+                    <input type="text" id="newProductName" placeholder="e.g., Premium Sneaker 1">
+                </div>
+                <div class="form-group">
+                    <label>Price (GHS)</label>
+                    <input type="number" id="newProductPrice" step="1" placeholder="150">
+                </div>
+                <div class="form-group">
+                    <label>Image Filename</label>
+                    <input type="text" id="newProductImage" placeholder="101.jpg">
+                    <small>Place image file in the same folder as index.html</small>
+                </div>
+            </div>
+            <div class="modal-footer">
+                <button id="confirmAddProductBtn" class="save-btn">Add Product</button>
+            </div>
+        </div>
+    </div>
+
+    <!-- Order Details Modal -->
+    <div class="modal" id="orderDetailsModal">
+        <div class="modal-content modal-large">
+            <div class="modal-header">
+                <h3>Order Details</h3>
+                <button class="close-modal">&times;</button>
+            </div>
+            <div class="modal-body" id="orderDetailsContent"></div>
+        </div>
+    </div>
+
+    <script src="admin.js"></script>
+</body>
+</html>
